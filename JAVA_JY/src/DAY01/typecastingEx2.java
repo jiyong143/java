@@ -9,12 +9,19 @@ public class typecastingEx2 {
 		
 		byte num2 =(byte)num1;// num1이 3이 저장돼 있어서 바로 저장할 수 있어 보여도 강제로 해야 함
 		
+		//byte num3 = 3;
+		
 		byte num4 = (byte)128;
 		
 		//에러가 발생하지는 않지만 필요에 의해 형변환을 하는 경우
-		System.out.println(1/2);
+		System.out.println(1/2); // 0.5 가 안나오고 0 이 나옴
 		
 
+		
+		// 같은 타입의 변수를 여러 개 선언하는 방법
+		
+		int num5 = 1, num6 = 2, num7= 3;
+		
 	}
 
 }

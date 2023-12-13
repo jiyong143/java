@@ -2,7 +2,7 @@ package DAY01;
 
 public class variablenamingEx1 {
 
-	//변수명 작성 규칙(필수)과 관례(선탹이지만 추천)
+	//변수명 작성 규칙(필수)과 관례(선택이지만 추천)
 	public static void main(String[] args) {
 		
 		//1.대소문자 구분하기
