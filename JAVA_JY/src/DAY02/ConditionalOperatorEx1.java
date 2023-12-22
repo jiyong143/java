@@ -16,3 +16,7 @@ public class ConditionalOperatorEx1 {
 	}
 
 }
+
+//  비트 연산자랑 비트 이동 연산자 잠깐 보고 이동
+
+

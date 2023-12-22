@@ -15,13 +15,11 @@ public class LoopEx1 {
 		for(;ch != 'q';) {
 			System.out.println("한 문자를 입력하시오 : ");
 			ch = scan.next().charAt(0);
-			System.out.println("문자 :" + ch);
+			System.out.println("문자 :" + " " + ch);
 			if(ch == 'q') {
 				System.out.println("종료");
 			}
 		}
-		
-		scan.close();
+			scan.close();
 	}
-
 }

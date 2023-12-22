@@ -16,7 +16,7 @@ public class HwEx1 {
 		
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.println("성적을 입력하시오 :");
+		System.out.print("성적을 입력하시오 :");
 		
 		int point = scan.nextInt();
 		
