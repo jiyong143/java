@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
 import lombok.Data;
+
 
 
 @Data
 public class Account implements Serializable{
-	
-	
-private static final long serialVersionUID = 1L;
+	 
+	private static final long serialVersionUID = 1L;
 	
 	private int month; // 월
 	
@@ -21,8 +22,6 @@ private static final long serialVersionUID = 1L;
 	private List<MoneyIn> moneyInList; // 수입금액과 내역 리스트
 	
 	private List<MoneyOut> moneyOutList; // 지출 금액과 내역 리스트
-	
-	
 
 	// 생성자 1 : 날짜 생성자
 	
@@ -33,64 +32,98 @@ private static final long serialVersionUID = 1L;
 	
 	// 생성자 2 : 날짜, 수입금액, 내역 생성자
 	
-	public Account(int month, int day , int moneyIn, String memo) {
+	public Account(int month, int day , MoneyIn moneyIn) {
 		
 		this.month=month;
 		this.day=day;
 		moneyInList= new ArrayList<MoneyIn>();
-		moneyInList.add(new MoneyIn(moneyIn,memo));
+		moneyInList.add(moneyIn);
 	}
 	
-	// 생성자 3 : 날짜, 여러 수입금액, 내역 생성자
 	
-	public Account(int month, int day, List<MoneyIn>newMoneyInList) {
-		
-		this.month=month;
-		this.day=day;		
-		this.moneyInList=
-				newMoneyInList != null ? newMoneyInList : new ArrayList<MoneyIn>();
-		
-	}
+	
 	
 	// 생성자 4 : 날짜 지출금액, 내역 생성자
 	
 	
 	
-     public Account(int month, int day , int moneyOut, String memo) {
+     public Account(int month, int day , MoneyOut moneyOut) {
 		
 		this.month=month;
 		this.day=day;
 		moneyOutList= new ArrayList<MoneyOut>();
-		moneyOutList.add(new MoneyOut(moneyOut,memo));
+		moneyOutList.add(moneyOut);
 	}
      
-     // 생성자 5 : 날짜, 여러 지출금액, 내역 생성자
      
-     public Account(int month, int day, List<MoneyOut> newMoneyOutList) {
+     
+     
+     // 생성자 6 : 날짜,  수입지출 생성자(m:m)
+     
+     
+     public Account(int month, int day, List<MoneyIn> moneyInList, List<MoneyOut>moneyOutList) {
     	 
     	 this.month=month;
     	 this.day=day;
+    	 this.moneyInList=
+ 				moneyInList != null ? moneyInList : new ArrayList<MoneyIn>();		
     	 this.moneyOutList=
- 				newMoneyOutList != null ? newMoneyOutList : new ArrayList<MoneyOut>();
-   	 
+  				moneyOutList != null ? moneyOutList : new ArrayList<MoneyOut>();		
+    	  	 
      }
      
-     // 생성자 6 : 날짜, 수입지출 금액, 내역 생성자(1:1)
-     public Account(int month, int day, int moneyIn, String memoIn, int moneyOut, String memoOut ) {
+       
+     // 생성자 7: 날짜, 수입지출 생성자(1:1)
+     
+     public Account(int month, int day, MoneyIn moneyIn, MoneyOut moneyOut) {
     	 
     	 this.month=month;
     	 this.day=day;
     	 moneyInList= new ArrayList<MoneyIn>();
- 		 moneyInList.add(new MoneyIn(moneyIn,memoIn));
- 		 
+ 		 moneyInList.add(moneyIn);
  		 moneyOutList= new ArrayList<MoneyOut>();
-		 moneyOutList.add(new MoneyOut(moneyOut,memoOut));
-		 
+		 moneyOutList.add(moneyOut);   	 
      }
      
-     // 생성자 7 : 날짜, 수입지출 금액, 내역 생성자(1:M)
      
      
+     // 생성자 8: 날짜, 수입지출 생성자(1:m)
+     
+     public Account(int month, int day, MoneyIn moneyIn, List<MoneyOut> moneyOutList ) {
+    	 
+    	 this.month=month;
+    	 this.day=day;
+    	 moneyInList= new ArrayList<MoneyIn>();
+ 		 moneyInList.add(moneyIn);
+ 		 this.moneyOutList=
+  				moneyOutList != null ? moneyOutList : new ArrayList<MoneyOut>();
+ 		 
+     }
+     
+     
+     // 생성자 9 : 날짜, 수입지출 생성자(m:1)
+     
+     public Account(int month, int day,List<MoneyIn> moneyInList, MoneyOut moneyOut ) {
+    	 
+    	 this.month=month;
+    	 this.day=day;
+    	 this.moneyInList=
+  				moneyInList != null ? moneyInList : new ArrayList<MoneyIn>();
+    	 moneyOutList= new ArrayList<MoneyOut>();
+		 moneyOutList.add(moneyOut); 
+    	 
+     }
+     
+     // 생성자 : 날짜, 여러 수입 혹은 지출
+     
+     public Account(int month, int day, List<MoneyIn> moneyList ) {
+    	 
+    	 this.month=month;
+    	 this.day=day;
+    	 
+    	 
+    	 
+     }
 	
 	
 	
@@ -265,6 +298,8 @@ private static final long serialVersionUID = 1L;
 		moneyOutList.remove(pos);
 		return true;
 	}
-	
 
+	
+	
+	
 }

@@ -1,13 +1,7 @@
 package accountbook;
 
+public class AccountBookProgram implements Program {
 
-
-public class AccountBookProgram implements Program{
-
-	
-	
-	
-	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub

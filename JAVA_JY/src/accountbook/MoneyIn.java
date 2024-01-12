@@ -45,17 +45,14 @@ public class MoneyIn {
 
 	@Override
 	public String toString() {
-		return "[" + moneyIn + "]" + "" +  "[" + memo + "]";
+		return "[" + "수입 : " + moneyIn +  "," + "내역 : " + memo + "]";
 	}
-	
-	
- 
- 
-	
-	
-	
-	
-	
 
-	
+
+
+	public MoneyIn(String memo) {
+		
+		this.memo=memo;
+	}
+		
 }

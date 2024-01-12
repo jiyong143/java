@@ -43,14 +43,10 @@ public class MoneyOut {
 	public int hashCode() {
 		return Objects.hash(memo);
 	}
-	
-	
-	
-	
-	
-	
-	
 
-	
 
+	public MoneyOut(String memo) {
+		this.memo=memo;
+	}
+	
 }
