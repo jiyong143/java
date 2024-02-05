@@ -3,7 +3,7 @@ package word.service;
 public class PrintServiceImp implements PrintService {
 
 	@Override
-	public void printWordMenu() {		
+	public void printMainMenu() {		
 		System.out.println("---------");
 		System.out.println("메뉴");
 		System.out.println("1. 단어 관리");
@@ -16,7 +16,7 @@ public class PrintServiceImp implements PrintService {
 	}
 
 	@Override
-	public void printMainMenu() {		
+	public void printWordMenu() {		
 		System.out.println("---------");
 		System.out.println("메뉴");
 		System.out.println("1. 단어 추가");

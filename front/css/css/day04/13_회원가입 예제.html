@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 예제</title>
+    <style>
+        .input-box{margin:10px 0;}
+        .input-box::after{
+            clear:both;content:'';display:block;
+        }
+        .input-box label{
+            float: left; width:110px;
+        }
+        .input-box input{
+            /* 
+            calc() 함수 : 단위가 다른 값들을 계산하는 함수, 연산자 앞뒤로 공백을 반드시 추가
+
+            */
+            float:left; width: calc(100% - 110px); box-sizing:border-box;
+        }
+
+        .text-center{text-align: center;}
+    
+
+    </style>
+</head>
+<body>
+    <form action="" method="post" id="signupForm">
+        <fieldset>
+            <legend>회원가입</legend>
+            <div class="input-box">
+                <label for="id">아이디</label>
+                <input type="text" name="id" id="id">
+            </div>
+            <div class="input-box">
+                <label for="pw">비밀번호</label>
+                <input type="password" name="pw" id="pw">
+            </div>
+            <div class="input-box">
+                <label for="pw2">비밃번호 확인</label>
+                <input type="password" name="pw2" id="pw2">
+            </div>
+            <div class="input-box text-center">
+                <button type="submit">작성하기</button>
+            </div>
+        </fieldset>
+    </form>  
+</body>
+</html>

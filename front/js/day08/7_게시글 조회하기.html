@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>게시글 조회하기</title>
+</head>
+<body>
+	<script>
+		/* json : Javascript Object notation
+		- 자바스크립트에서 네트워크를 목적으로 사용하는 데이터 포맷
+		- 자바스크립트의 객체와 유사
+		{
+			차이점 
+			- json은 속성명에 반드시 ""를 붙인다.
+
+			"name" : "홍길동"
+		} */
+		let obj={
+			name:"홍길동",
+			"address" : "서울시",
+			'age' : 21,
+			score : [
+				{
+					title : "국어",
+					point: 100
+				},
+				{
+					title : "영어",
+					point : 50
+				}
+			]
+		};
+		console.log(obj);
+		let jsonObj = JSON.stringify(obj);
+		console.log(jsonObj);
+
+		fetch("")
+		.then(res=>res.text())
+		.then(data=>JSON.parse(data))
+		.then(data=>console.log(data));
+	</script>
+</body>
+</html>

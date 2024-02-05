@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class ClientEx1 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
 		// 서버의 ip, port 번호 설정
 		String ip = "192.168.30.194";
 		int port =5001;
@@ -26,7 +26,7 @@ public class ClientEx1 {
 			
 			System.out.println("연결 성공");
 			
-			Thread receiveThread ois =new ObjectInputStream()
+			
 			
 			
 			
@@ -41,9 +41,6 @@ public class ClientEx1 {
 		} catch (IOException e) {
 			
 			System.out.println("예외 발생");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 	}

@@ -9,13 +9,12 @@ import java.util.Objects;
 import lombok.Data;
 
 // 영어 단어 하나를 의미하는 클래스
-@Data
 
+@Data
 public class Word implements Serializable{
 	
-
-	private static final long serialVersionUID = 1L;
 	
+	private static final long serialVersionUID = 1L;
 	private String word;// 단어
 	private List<Mean> meanList; // 품사와 뜻 리스트
 	private int views; // 조회수
@@ -139,10 +138,10 @@ public class Word implements Serializable{
 		meanList.add(new Mean(partOfSpeech, mean));
 	}
 	
-	public word(String word, List<Mean> new MeanList) {
+	public Word(String word, List<Mean> newMeanList) {
 		this.word = word;
 		this.meanList=
-				newMeanList != null ? newmeanList : new ArrayList<Mean>();
+				newMeanList != null ? newMeanList : new ArrayList<Mean>();
 		
 	}
 

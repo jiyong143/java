@@ -74,4 +74,4 @@ public class LottoEx3 {
 			System.out.println("꽝");
 		}
 	}
-}
+} 

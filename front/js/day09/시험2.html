@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>유효성 검사</title>
+	<style>
+		.container{display:flex;width:300px;height:350px;}
+		.box>label{width:100px;font-weight: bold;}
+		.box>.input{width:100%;}
+		.btn{width:300px;height:50px;background-color:greenyellow;}
+		.box{margin-bottom:20px;}
+		input{border:none;border-bottom: 1px dashed black;}
+		#email{width:90px;}
+	</style>
+</head>
+<body>
+	<form action="" class="container">
+		<fieldset class="signup">
+		<div class="box">
+		<label for="id">아이디</label>
+		<input type="text" id="id" name="id">
+		<div class="show"></div>
+		</div>
+		<div class="box">
+		<label for="pw">패스워드</label>
+		<input type="password" id="pw" name="pw" onclick="message();">
+		<div class="show pwMessage"></div>
+		</div>
+		<div class="box">
+		<label for="pw2">패스워드 확인</label>
+		<input type="text" id="pw2" name="pw2">
+		<div class="show"></div>
+		</div>
+		<div class="box">
+		<label for="email">이메일</label>
+		<input type="text" id="email" name="email" onblur="">
+		@
+		<input type="text" id="email">
+		</div>
+		<div class="box">
+		<label for="address">주소</label>
+		<input type="text" id="address" name="address" onblur="show();">
+		</div>
+		<button class="btn">가입</button>
+		</fieldset>
+	</form>
+
+	<script>
+		let pwMessage = document.querySelector(".pwMessage");
+		let show = document.querySelector(".show");
+		function message(){
+			pwMessage.innerText="영문자 대/소문자 특수문자, 숫자 포함 8~23자";
+		}
+
+	  let input1 = document.querySelector("[name=id]");
+		let input2 = document.querySelector("[name=pw]");
+		let input3 = document.querySelector("[name=pw2]");
+		input1.onblur = function(){
+			if(this.value == ""){
+				this.nextElementSibling.style.display = "block"
+			}else{
+				this.nextElementSibling.style.display = "none"
+			}
+		}
+		$("[name=id]").blur(function(){
+			let value = $(this).val();
+			if(value == ""){
+				$(this).next().show();
+			}else{
+				$(this).next().hide();
+			}
+		})
+	</script>
+</body>
+</html>

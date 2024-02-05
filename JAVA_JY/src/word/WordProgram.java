@@ -6,6 +6,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import word.service.FileServiceImp;
+import word.service.FileService;
 import word.service.PrintService;
 import word.service.PrintServiceImp;
 
@@ -26,11 +28,13 @@ public class WordProgram implements Program {
 	
 	private PrintService printService = new PrintServiceImp();
 
+	private FileService fileService = new FileServiceImp();
+	
 	private Vocabulary vocabulary = new Vocabulary(null);
 	
 	private List<Word> wrongList = new ArrayList<Word>(); // 오답 리스트
 	
-	private FileService fileService = new FileServiceImp();
+	
 	
 	@Override
 	public void runMenu(int menu) {
@@ -106,8 +110,8 @@ public class WordProgram implements Program {
 			System.out.println("이전 메뉴로 돌아갑니다.");
 			
 		default :
-				
-				
+			
+			throw new InputMismatchException();							
 		}
 		
 	}
@@ -132,7 +136,7 @@ public class WordProgram implements Program {
 	}
 
 	private void printAll() {
-		//vocabulary.print();
+		vocabulary.print();
 		
 	}
 
@@ -150,9 +154,7 @@ public class WordProgram implements Program {
 			
 			
 		}while(menu!=GAME_EXIT);
-			
-			
-			
+						
 	}
 
 	private void runGameMenu(int menu) {
@@ -193,10 +195,10 @@ public class WordProgram implements Program {
 
 	private void printWrongList() {
 		if(wrongList.size()==0) {
-			System.out.println("  오답 없음");
+			System.out.println("오답이 없습니다.");
 			return;
 		}
-		wrongList.stream(.forEach(w->w.get))
+		wrongList.stream().forEach(w->w.printWord());
 	}
 
 
@@ -209,6 +211,9 @@ public class WordProgram implements Program {
 		}
 		// 랜덤으로 섞어 줌
 		Collections.shuffle(gameList);
+		
+		int win=0, lose=0;
+		
 		// 반복문 : 최대 리스트 크기만큼
 		while(gameList.size()!=0) {
 			
@@ -265,8 +270,8 @@ public class WordProgram implements Program {
 			}
 		}
 		
-		// 결과물 출력
-		System.out.println();
+		// 결과를 출력
+		System.out.println(win + "승" + lose + "패");
 	}
 
 
@@ -318,7 +323,7 @@ public class WordProgram implements Program {
 
 		// 단어 입력
 		System.out.println("단어 : ");
-		scan.nextLine();
+		scan.nextLine(); // 엔터 처리
 		String word = scan.nextLine();
 		// 입력한 단어와 일치하는 단어 객체를 가져옴
 		Word selectedWord = vocabulary.getWord(word);
@@ -331,7 +336,7 @@ public class WordProgram implements Program {
 		// 단어가 있으면 단어와 뜻을 출력
 		selectedWord.printWord();
 		// 삭제할 의미의 번호를 입력
-		System.out.println("삭제할 의미 번호 : ");
+		System.out.print("삭제할 의미 번호 : ");
 		int index = scan.nextInt()-1;
 		
 		// 해당 단어의 의미를 삭제 후 알림
@@ -339,15 +344,13 @@ public class WordProgram implements Program {
 			System.out.println("의미를 삭제했습니다.");
 		}else {
 			System.out.println("의미를 삭제하지 못했습니다.");
-		}
-		
-
-		
+		}		
 	}
+	
 
 	private void setMean() {
 		// 단어 입력
-		System.out.println("단어 : ");
+		System.out.print("단어 : ");
 		scan.nextLine();
 		String word = scan.nextLine();
 		// 입력한 단어와 일치하는 단어 객체 가져옴
@@ -356,36 +359,37 @@ public class WordProgram implements Program {
 		
 		if(selectedWord == null) {
 			System.out.println("등록되지 않은 단어입니다.");
+			return;
 		}
 		// 입력한 단어의 뜻을 출력
 		
 		selectedWord.printWord();
 		// 수정할 뜻 선택
+		System.out.print("수정할 의미 번호 : ");
 		int index = scan.nextInt()-1;
 		// 수정할 품사, 뜻을 입력
-		System.out.println("수정할 품사 : ");
+		System.out.print("수정할 품사 : ");
 		String partOfSpeech = scan.next();
-		System.out.println("수정할 의미 : ");
-		scan.nextLine();
+		System.out.print("수정할 의미 : ");
+		scan.nextLine(); // 엔터 처리
 		String mean = scan.nextLine();
 		// 뜻을 수정
 		if(selectedWord.setMean(index, partOfSpeech, mean)) {
 			System.out.println("의미를 수정했습니다.");
 		}else {
 			System.out.println("의미를 수정하지 못했습니다.");
-		}
-		
+		}		
 	}
 
 	private void addMean() {
 		// 뜻을 추가할 단어 입력, 품사, 뜻 입력
 		
-		System.out.println("단어 : ");
+		System.out.print("단어 : ");
 		scan.nextLine(); // 엔터 처리
 		String word = scan.nextLine();
-		System.out.println("품사 : ");
+		System.out.print("품사 : ");
 		String partOfSpeech = scan.next();
-		System.out.println("의미 : ");
+		System.out.print("의미 : ");
 		scan.nextLine(); // 엔터 처리
 		String mean = scan.nextLine();
 		
@@ -394,10 +398,12 @@ public class WordProgram implements Program {
 		if(vocabulary.addMean(word,partOfSpeech,mean)) {
 			System.out.println("새 의미를 추가했습니다.");
 		}else {
-			System.out.println("새 의미를 추가하지 못함.");
-		}		
+			System.out.println("새 의미를 추가하지 못했습니다.");
+		}
+		System.out.println(vocabulary);
 	}
 
+	
 	private void wordManage() {
 		int menu=0;
 		do {
@@ -405,13 +411,12 @@ public class WordProgram implements Program {
 		printService.printWordMenu();
 		// 메뉴 선택
 		menu = scan.nextInt();
-		
+		// 메뉴 실행
 		runWordMenu(menu);
-		}while(menu!=WORD_EXIT);
-		
-		
+		}while(menu!=WORD_EXIT);		
 	}
 
+	
 	private void runWordMenu(int menu) {
 		switch(menu) {
 		case 1 :
@@ -441,7 +446,7 @@ public class WordProgram implements Program {
 	private void removeWord() {
 		// 삭제할 단어 입력
 		
-		System.out.println("삭제할 단어 : ");
+		System.out.print("삭제할 단어 : ");
 		scan.nextLine(); // 입력 버퍼 엔터 처리
 		String word = scan.nextLine();
 		
@@ -458,10 +463,10 @@ public class WordProgram implements Program {
 	private void setWord() {
 
 		// 수정할 단어와 새 단어를 입력
-		System.out.println("수정할 단어 : ");
+		System.out.print("수정할 단어 : ");
 		scan.nextLine(); // 이전에 입력한 엔터처리
 		String oldWord = scan.nextLine();
-		System.out.println("새 단어 : ");
+		System.out.print("새 단어 : ");
 		String newWord = scan.nextLine();
 	
 		
@@ -479,20 +484,22 @@ public class WordProgram implements Program {
 	private void addWord() {
 		
 		// 단어, 품사 ,뜻을 입력
-		System.out.println("단어 : ");
+		System.out.print("단어 : ");
 		scan.nextLine(); // 이전에 입력한 엔터를 처리
 		String word = scan.nextLine();
+		
+		//뜻들을 저장할 리스트
 		List<Mean> meanList = new ArrayList<Mean>();
 		char isContinue = 'n';
 		do {
-		System.out.println("품사 : ");
+		System.out.print("품사 : ");
 		String partOfSpeech = scan.next();
-		System.out.println("의미 : ");
+		System.out.print("의미 : ");
 		scan.nextLine();
 		String mean = scan.nextLine();
 		
 		meanList.add(new Mean(partOfSpeech,mean));
-		System.out.println("의미를 더 추가하시겠습니까?(y/n) : ");
+		System.out.print("의미를 더 추가하시겠습니까?(y/n) : ");
 		isContinue = scan.next().charAt(0);
 		}while(isContinue=='y');
 		
@@ -513,6 +520,9 @@ public class WordProgram implements Program {
 			System.out.println(" 뜻과 단어가 이미 등록된 상태입니다.");
 		}		
 	}
+	
+	
+	
 
 	@Override
 	public void run() {

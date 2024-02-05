@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<ul id="list">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<script>
+		let Li = document.querySelector("li:nth-of-type(3)");
+		let parent = Li.parentElement;
+		console.log(parent);
+
+		let prevLi=li.previousElementSibling;
+		console.log(prevLi);
+
+		let nextLi = li.nextElementSibling
+		console.log(nextLi);
+
+		let ul = document.querySelector("#list");
+		let childrenLi = ul.children;
+		console.log(childrenLi);
+
+		let firstLi = ul.firstElementChild;
+		console.log(firstLi);
+
+		let lastLi = ul.lastElementChild;
+		console.log(lastLi);
+
+
+	</script>
+</body>
+</html>

@@ -91,7 +91,6 @@ public class MoneyMain {
 		
 		mp.run();
 		
-
 	}
 
 }

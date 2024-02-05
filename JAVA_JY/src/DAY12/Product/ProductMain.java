@@ -1,4 +1,6 @@
-Package DAY12.Product;
+package DAY12.Product;
+
+
 
 import java.util.Scanner;
 

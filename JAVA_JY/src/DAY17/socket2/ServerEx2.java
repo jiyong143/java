@@ -60,7 +60,7 @@ public class ServerEx2 {
 			
 			receiveThread.start();
 			
-			Thread sendThread = new Thread(()->{
+			/*Thread sendThread = new Thread(()->{
 				try(ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream())){
 					Scanner scan = new Scanner(System.in);
 					while(true) {
@@ -78,7 +78,7 @@ public class ServerEx2 {
 					
 				}
 				System.out.println();
-			});
+			});*/
 			
 			// 읽어온 채팅 내역을 클라이언트로 전송
 			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());

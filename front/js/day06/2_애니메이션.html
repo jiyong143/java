@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>애니메이션</title>
+	<script src="//code.jquery.com/jquery-3.7.1.js"></script>
+	<style>
+		.box{width:100px; height:100px; background-color: yellow;}
+	</style>
+</head>
+<body>
+	<button class="btn-right">오른쪽으로 이동</button>
+	<button class="btn-stop">중지</button>
+	<div class="box"></div>
+	<script>
+		$(".btn-right").click(()=>{
+			if(!$(".box").is(":animated")){
+			$(".box").animate({"margin-left":"+=100px"},1000);
+			}
+		});
+
+		$(".btn-stop").click(()=>{
+			$('.box').stop(true);
+		});
+
+
+
+	</script>
+	
+</body>
+</html>

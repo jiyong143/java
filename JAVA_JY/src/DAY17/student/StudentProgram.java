@@ -24,7 +24,12 @@ public class StudentProgram implements Program {
 		
 		String fileName="src/DAT17/student/student.txt";
 		// 불러오기
-		load(fileName);
+		try {
+			load(fileName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		do {
 						
@@ -59,7 +64,7 @@ public class StudentProgram implements Program {
 		
 	}
 
-	private void load(String fileName) {
+	private void load(String fileName) throws ClassNotFoundException {
 		
 		try(FileInputStream fis = new FileInputStream(fileName);
 				ObjectInputStream ois = new ObjectInputStream(fis)){

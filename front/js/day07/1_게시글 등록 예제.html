@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>게시글 등록 예제</title>
+	<style>
+		.container{max-width:500px;margin:0 auto;}
+		.input-box>.label{display:block;}
+		.input-box>.input{display:block;width:100%;height:30px;border-radius: 5px;border:1px solid black;
+		                  margin-top: 5px; padding-left:10px;box-sizing: border-box;}
+		.input-box{margin-top:10px;}
+		.input-box>.text-area{height:200px;}
+		.btn{width:100%;box-sizing: border-box;background-color: white;border:1px solid green;
+		     border-radius:5px;margin-top:10px;height:30px;line-height: 28px;display:block;cursor:pointer;}
+		.table{width:100%;border-collapse: collapse;}
+		.table tr{border:1px solid gray;border-width:1px 0;height:30px;}
+		.table.table-hover>tbody>tr:hover{background-color: aquamarine;}
+		.modal-box{position:fixed;top:0;bottom:0;left:0;right:0;background-color: rgba(0,0,0,0.3);display: none;}
+		.modal-box .inner-box{background-color: #fff;max-width: 500px;height:400px;margin:50px auto 0;position: relative;}
+		.modal-box .btn-close{position: absolute; top: 0; right: 0;width: 30px; height: 30px;text-decoration: none;color:black;text-align: center;}
+	</style>
+</head>
+<body>
+	<form action="" class="contianer">
+		<h1>게시글 등록</h1>
+		<div class="input-box">
+			<label for="title" class="label">제목:</label>
+			<input type="text" name="title" id="title" placeholder="제목을 입력하세요." class="input">
+		</div>
+		<div class="input-box">
+			<label for="writer" class="label">작성자:</label>
+			<input type="text" name="writer" id="writer" placeholder="작성자를 입력하세요." class="input">
+		</div>
+		<div class="input-box">
+			<label for="content" class="label">내용:</label>
+			<textarea type="text" name="content" id="content" rows="10" placeholder="내용을 입력하세요." class="input text-area"></textarea>
+		</div>
+		<button class="btn">등록</button>
+		</form>
+	<hr>
+	<div class="container">
+		<h1>게시글 리스트</h1>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>조회수</th>
+				</tr>
+			</thead>
+			<tbody>			
+			</tbody>
+		</table>
+	</div>
+	<div class="modal-box">
+		<div class="inner-box">
+			<a href="" class=""></a>
+		</div>
+	</div>
+	<script>
+		// 게시글 리스트를 관리할 배열
+		let list = [];
+		display(list);
+
+		let btn = document.querySelector(".btn");
+		let closeBtn = document.querySelector(".btn-close");
+		btn.onclick(function(){
+			let title= document.getElementById("title").value;
+			let content= document.getElementById("content").value;
+			let writer= document.getElementById("writer").value;
+
+			let num;
+			if(!list.length){
+				num=1;
+			}else{
+				num=parseInt(list[0]["num"])+1;
+			}
+			let view = 0;
+
+			let obj={
+				num,
+				title, // title:title
+				writer,
+				view,
+				content
+			}
+			if(!checkBoard(obj)){
+				alert("모든 항목은 필수항목입니다.")
+				return false;
+			}
+
+			list.unshift(obj);
+
+			display(list);
+			initForm();
+			return false;
+
+		}
+		closeBtn.onclick=function(){
+
+		}
+
+		)
+
+
+
+		// 버튼을 선택
+
+		// 버튼에 클릭 이벤트 등록
+
+		  // 입력한 제목, 내용, 작성자를 가져옴
+
+			// 가져온 제목, 내용, 작성자와 번호를 이용해서 객체 생성
+
+			// 생성된 객체를 배열의 앞에 추가
+
+			// display 함수를 호출 : 테이블에 list를 출력하는 함수
+
+		// return false 를 통해 서버로 전송되는 것을 막아줌
+
+		function linkClick(){
+			modal.style.display = "block";
+			let num = this.getAttribute("data-num");
+			let board = getBoard(list,num);
+			if(board){
+				// 번호, 제목, 작성자, 조회수, 내용을 구성 후 모달창에 출력 : html 코드를 문자열로
+				
+
+			}else{
+				// 없는 게시글입니다 를 구성해서 모달창에 출력
+
+			}
+		}
+
+
+		// display 함수
+		function display(list){
+
+			let tbody = document.querySelector("tbody");
+			tbody.innerHTML="";
+
+			if(!list.length){
+				let tr = createElement("tr");
+				let th = createElement("th", "등록된 게시글이 없습니다.", {colspan:4});
+				tr.append(th);
+				tbody.append(tr);
+				return;
+			}
+
+			for(let i=0; i<list.length;i++){
+				let tr = createElement("tr");
+				for(key in list[i]){
+					if(key=="content"){
+						continue;
+					}
+					let obj = list[i];
+					if(key!="title"){
+						let td = createElement("td",String(obj[key]),{class:key});
+						tr.append(td);
+					}else{
+						let td = createElement("td",null,{class:key});
+						let attr = {
+							class:"link",
+							href: "#",
+							"data-num" : obj["num"]
+						}
+						let a = createElement("a",String(obj[key]),{class:"link",href:"#"});
+						td.append(a);
+						tr.append(td);
+					}
+					
+					tr.append(td);
+				}
+				tbody.append(tr);
+			}
+		}
+
+		function createElement(tagName, text, attributes){
+			let element = document.createElement(tagName);
+			if(text){
+				let textNode = document.createTextNode(text);
+				element.append(textNode);
+			}
+			if(attributes){
+				for(key in attributes){}
+					let attrNode = document.createAttribute(key);
+					attrNode.value = attributes[key];
+					element.setAttributeNode()
+			}
+			}
+
+			// 게시글에 빈 항목이 있는지 없는지 알려주는 함수
+
+			function checkBoard(board){
+				if(!board){
+					return false;
+				}
+				if(typeof board !="object"){
+					return false;
+				}
+				// 제목 체크
+				if(board["title"].trim().length){
+					return false;
+				}
+				// 작성자 체크
+				if(!board["writer"].trim().length){
+					return false;
+				}
+				// 내용 체크
+				if(!board["content"].trim().length){
+					return false;
+				}
+			}
+			function initForm(){
+			 document.getElementById("title").value="";
+			 document.getElementById("content").value="";
+			 document.getElementById("writer").value="";
+			}
+
+
+		
+	</script>
+
+
+</body>
+</html>

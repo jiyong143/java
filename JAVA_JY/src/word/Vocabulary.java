@@ -39,14 +39,17 @@ public class Vocabulary {
 			list.add(new Word(word,newMeanList));
 			return true;
 		}
+		// 등록된 단어
 		
 		Word selectedWord = list.get(index);
 		
 		
-		
+		// 중복된 뜻이 있으면 중복 안된  뜻들을 확인
+		// 등록된 단어의 뜻을 가져옴
 		
 		
 		List<Mean> selectedMeans = selectedWord.getMeanList();
+		// 새로운 뜻에 중복되지 않은 뜻의 개수
 		int count  =(int) newMeanList.stream().filter(m->!selectedMeans.contains(m)).count();
 		
 		
@@ -64,7 +67,24 @@ public class Vocabulary {
 	}
 				
 		
+	public boolean addMean(String word, String partOfSpeech,String mean) {
 		
+		// list가 비었으면
+		if(list==null) {
+			return false;
+		}
+		// 해당 단어 위치 검색
+		int index = list.indexOf(new Word(word));
+		
+		//단어가 없으면
+		if(index<0) {
+			return false;
+		}
+		//단어에 뜻을 추가 후 성공 여부를 알려줌
+		Word selectedWord = list.get(index);
+		return selectedWord.addMean(partOfSpeech,mean);
+				
+	}
 		
 		
 		
@@ -112,18 +132,20 @@ public class Vocabulary {
 
 	public Word getWord(String word) {
 		int index = list.indexOf(new Word(word));
-		if(index<0) {
+		/*
+		if(index <0) {
 			return null;
 		}
 		return list.get(index);
+		*/		
 		return index < 0 ? null : list.get(index);
 	}
+	
 
 
 	public void print(String word) {
 		print(word,(w1,w2)->w1.getWord().compareTo(w2.getWord()));
 		
-
 	}
 	
 	

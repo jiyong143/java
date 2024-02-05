@@ -29,7 +29,9 @@ public class Student {
 	@NonNull
 	private String name;
 	
+	
 	private int kor,eng,math;
+	
 	
 	@Override
 	public int hashCode() {

@@ -70,7 +70,7 @@ public class AccountBook {
 		
 		if(index<0) {
 			
-			list.add(new Account(month,day,newMoneyOutList));
+			list.add(new Account(month,newMoneyOutList,day));
 			return true;
 		}
 		

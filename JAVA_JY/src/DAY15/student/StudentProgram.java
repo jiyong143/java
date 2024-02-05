@@ -269,7 +269,7 @@ public class StudentProgram implements Program {
 		
 		System.out.println("성적 수정 완료");
 		
-		System.out.println(list.get(index)); // 확인용
+		// System.out.println(list.get(index)); // 수정 확인용
 	}
 		
 		

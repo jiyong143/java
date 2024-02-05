@@ -7,13 +7,7 @@ public class SynchronizedEx1 {
 
 	public static void main(String[] args) {
 		
-		BankBook bb = new BankBook(0,"홍길동");
-		Customer c1 = new Customer(bb,"홍길동");
-		Customer c2 = new Customer(bb,"고길동");
 		
-		
-		c1.start();
-		c2.start();
 
 	}
 
@@ -25,6 +19,7 @@ public class SynchronizedEx1 {
 class Customer extends Thread{
 	private BankBook bankBook;	
 	private String name;
+	private int balance;
 	
 	@Override
 	public void run() {
@@ -55,6 +50,10 @@ class Customer extends Thread{
 @AllArgsConstructor
 class BankBook{
 	
+	public void deposit(int i) {
+		// TODO Auto-generated method stub
+		
+	}
 	private int balance;
 	private String name;
 	

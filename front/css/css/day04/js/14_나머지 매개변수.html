@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나머지 매개변수와 arguments 객체</title>
+</head>
+<body>
+    <script>
+        function sum1(...args){
+            var sum=0;
+            for(let i=0;i<args.length;i++){
+                sum+=args[i];
+            }
+            return sum;
+        }
+
+        console.log(sum1(1,2,3));
+
+        function sum2(){
+            var sum=0;
+            for(let i=0; i<arguments.length;i++){
+                sum+=arguments[i];
+            }
+            return sum;
+        }
+        console.log(sum2(1,2,3,4,5));
+    </script>
+</body>
+</html>

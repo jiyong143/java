@@ -28,16 +28,21 @@ public class LottoEx3 {
 			}
 		}
 		
+		
+		
 		int [] lotto = new int[6];
 		System.arraycopy(tmp, 0, lotto, 0, 6);
 		
 		int bonus = tmp[6];
 		
 		Arrays.sort(lotto);
+		
 		System.out.print("당첨번호 : ");
 		for(int i = 0; i<lotto.length;i++) {
 			System.out.print(lotto[i] + " ");
 		}
+		
+		
 		System.out.println(" [ " + bonus + " ] ");
 		
 		int [] user = new int[6];

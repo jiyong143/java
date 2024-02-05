@@ -35,22 +35,24 @@
          colgroup 태그
           - 열의 스타일을 적용하기 위해 
           col 태그
-           - 
+           - 열의 스타일을 적용하는 태그
+           - 열을 적용하지 않아도 열 개수만큼 작성
 
           속성 colspan 
            - 열을 병합
            - td, th 태그에 사용
           속성 rowspan
-           - 
+           - 행을 병합
+           - td,th 태그에 사용
     -->
     <figure>
-    <table>
+    <table border="1">
         <caption>성적표</caption>
         <colgroup>
             <col style = "backgroud-color:yellow;">
             <col style = "backgroud-color:aliceblue;">
             <col style = "backgroud-color:gray;">
-        
+        </colgroup>
         <thread>
         <tr>
             <th>과목</th>
@@ -59,6 +61,7 @@
             <th>성적</th>
         </tr>
         </thread>
+
         <tbody>
 
         <tr>
@@ -68,7 +71,7 @@
             <td>100</td>
         </tr>
         <tr>
-            <td>HTML</td>
+          <!--<td>HTML</td>-->
 
             <td>2</td>
             <td>임꺽정</td>
@@ -79,7 +82,8 @@
         <tr>
 
             <td colspan ="3">평균</td>
-            <td></td>
+            <!--<td></td>
+            <td></td>-->
             <td>95</td>
         </tr>
         </tfoot>

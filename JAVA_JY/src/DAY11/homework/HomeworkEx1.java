@@ -34,6 +34,20 @@ public class HomeworkEx1 {
 
 	public static void main(String[] args) {
 		
+		Student[] stds = new Student[5];
+		stds[0] = new Student(1,1,1,"홍길동");
+		stds[0] = new Student(1,1,2, "임꺽정");
+		
+		stds[0].insertSubject("국어", 100);
+		stds[0].insertSubject("영어", 100);
+		stds[1].insertSubject("국어", 100);
+		stds[1].insertSubject("수학", 100);
+		
+		stds[0].print();
+		stds[1].print();
+		
+		stds[0].updateSubject("국어", 50);
+		
 		
 		
 		

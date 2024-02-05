@@ -38,7 +38,7 @@ public class MapEx1 {
 		
 		
 		/* KeySet() : 멥에 있는 key들을 모아 set에 저장하여 반환 */
-		Set<String> keySet = map.KeySet();
+		Set<String> keySet = map.keySet();
 		
 		
 		

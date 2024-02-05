@@ -1,6 +1,7 @@
 package DAY17.student;
 
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import lombok.AllArgsConstructor;
