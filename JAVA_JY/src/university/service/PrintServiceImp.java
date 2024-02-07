@@ -1,10 +1,13 @@
 package university.service;
 
+
 import java.util.Scanner;
 
 public class PrintServiceImp implements PrintService {
 	
 	static Scanner scan= new Scanner(System.in);
+
+public class PrintServiceImp implements PrintService {
 
 	// 프로그램 시작시 포지션 선택 메뉴 출력 메서드
 	@Override
@@ -131,6 +134,7 @@ public class PrintServiceImp implements PrintService {
 	}
 	
 
+
 	// 교사나 학생일 경우 처음에 관계자인지 확인하기 위한 메서드
 	@Override
 	public void checkProfessor() {
@@ -142,3 +146,8 @@ public class PrintServiceImp implements PrintService {
 		
 	}
 }
+
+	
+	
+}
+
