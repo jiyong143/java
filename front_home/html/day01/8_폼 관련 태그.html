@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼 관련 태그</title>
+</head>
+<body>
+    <form action="7_하이퍼 링크 관련 태그.html">
+        <fieldset>
+            <legend>회원정보</legend>
+            <input type="text" name="id" ><br>
+            <input type="password" name="pw" ><br>
+            <input type="hidden" name="age" value="21">
+            <input type="reset" value="리셋버튼"><br>
+            <input type="file" name="file" multiple accept=".pdf"><br>
+            <input type="button" value="그냥 버튼"><br>
+            좋아하는 취미는?<br>
+            <label>
+            <input type="checkbox" name="hobby" value="music" checked>음악감상
+            </label>
+            <input type="checkbox" name="hobby" value="soccer">축구
+            <input type="checkbox" name="hobby" value="baseball">야구<br>
+            본인의 나이대는?<br>
+            <input type="radio" name="age2" value="20under" checked id="20under">
+            <label for="20under">20세미만</label>
+            <input type="radio" name="age2" value="60under">20세이상60세미만
+            <input type="radio" name="age2" value="60over">60세이상
+            
+            <input type="submit" value="전송">
+            
+        </fieldset>
+    </form>
+
+    
+</body>
+</html>

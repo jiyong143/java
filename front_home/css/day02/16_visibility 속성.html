@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>visibility 속성</title>
+    <style>
+        /* display : none 과 visibility : hidden 의 차이
+           오른쪽은 화면에 없어지지만 공간은 그대로 차지한다 */
+        .display-none{display:none;}
+        .visibility-hidden{visibility:hidden;}
+    </style>
+</head>
+<body>
+    <div class="display-none">456</div>
+    <div class="box">123</div>
+    <div class="visibility-hidden">456</div>
+    <div class="box">123</div>
+</body>
+</html>
