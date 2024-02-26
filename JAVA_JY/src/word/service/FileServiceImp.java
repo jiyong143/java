@@ -1,4 +1,4 @@
-package word.service;
+/*package word.service;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,7 +12,7 @@ public class FileServiceImp implements FileService {
 
 	
 	@Override
-	public boolean save(String fileName , List<Word> list) {
+	public boolean save() {
 		
 		try(ObjectOutputStream oos=
 			new ObjectOutputStream(new FileOutputStream(fileName))){
@@ -36,4 +36,4 @@ public class FileServiceImp implements FileService {
 	}
 	
 	
-}
+}*/

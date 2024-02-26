@@ -61,7 +61,7 @@ public class AccountBook {
 	
 	
 	
-    public boolean addOutAccount(int month, int day, List<MoneyOut>newMoneyOutList) {
+    /*public boolean addOutAccount(int month, int day, List<MoneyOut>newMoneyOutList) {
 		
 		if(list==null) {
 			return false;
@@ -92,7 +92,7 @@ public class AccountBook {
 		           .filter(m->!selectedMoneyOutList.contains(m))
 		           .forEach(m->selectedMoneyOutList.add(m));
 		return true;
-    }
+    }*/
 	
 	
 	

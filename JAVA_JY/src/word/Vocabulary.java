@@ -14,11 +14,10 @@ public class Vocabulary {
 
 	private List<Word> list; // 단어 리스트
 	
-	public Vocabulary(List<Word>list) {
+	public Vocabulary(List<Word> list) {
 		
 		if(list==null) {
 			list = new ArrayList<Word>();
-			
 		}
 		this.list=list;
 	}
@@ -82,7 +81,7 @@ public class Vocabulary {
 		}
 		//단어에 뜻을 추가 후 성공 여부를 알려줌
 		Word selectedWord = list.get(index);
-		return selectedWord.addMean(partOfSpeech,mean);
+		return selectedWord.addMenu(partOfSpeech,mean);
 				
 	}
 		
