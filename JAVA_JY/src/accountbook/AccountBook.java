@@ -173,8 +173,57 @@ public class AccountBook {
 		
 				                 
 				                  
-		
-				                       
+	private void selectPostDetail(String me_id, int bd_num) {
+		System.out.println("상세 조회할 게시글의 번호를 위에서 찾아 입력하세요.");
+		System.out.print("게시글 번호 입력 : ");
+		int selectpo_num = scan.nextInt();
+		if(fanCafeService.checkPoNumPostInBoard(bd_num, selectpo_num)) {
+			if(fanCafeService.getMemberLevel(me_id).equals("정회원")) {
+			int po_num = fanCafeService.getPoNum(bd_num,selectpo_num);
+			// 게시글 번호 입력시 출력 메서드 
+			Post post = fanCafeService.getPost(po_num);
+			System.out.println("해당 게시글의 상세 조회는 다음과 같습니다.");
+			System.out.println("-------------------------------------------------------------------------------");
+			post.printPostDetail();
+			System.out.println("-------------------------------------------------------------------------------");
+			fanCafeService.viwePlus(post.getPo_view()+1, post.getPo_num());
+			}else {
+				System.out.println("회원님은 미승인 회원입니다. 관리자의 승인을 대기해주세요.");
+			}
+		}else {
+			System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
+			scan.nextInt();
+		}
+	}
+	
+	private void deleteUser(String me_id) {
+		System.out.println("------회원탈퇴------");
+		System.out.println("정말로 회원을 탈퇴하시겟습니까?");
+		System.out.print("회원탈퇴를 정말로 원하신다면, '회원탈퇴'를 입력해주세요.");
+		String deleteMent = scan.next();
+		if(deleteMent.equals("회원탈퇴")) {
+			if(!fanCafeService.getMemberLevel(me_id).equals("관리자")) {
+				fanCafeService.deleteUser(me_id);
+				// 탈퇴한 회원의 게시글들 삭제 
+				fanCafeService.deletePostOutMember(me_id);
+				System.out.println("회원탈퇴에 성공했습니다.");
+			}else {
+				System.out.println("관리자는 회원 탈퇴할 수 없습니다.");
+			}
+		}else {
+			System.out.println("회원 탈퇴를 보류하셨습니다.");
+		}
+	}
+	
+	public void deletePostOutMember(String me_id) {
+		fanCafeDao.deletePostOutMember(me_id);
+	}
+	
+	<delete id="deletePostOutMember">
+	  delete from post where po_me_id = #{me_id}
+	</delete>
+			
+						
 		
 			
 		
