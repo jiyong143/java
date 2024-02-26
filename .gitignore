@@ -26,4 +26,6 @@ replay_pid*
 .classpath
 
 .project
-JAVA_JY/.gitignore
+**/.gitignore
+.settings/
+MANIFEST.MF

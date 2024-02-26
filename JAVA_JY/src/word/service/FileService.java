@@ -7,7 +7,6 @@ import DAY10.word.Word;
 public interface FileService {
 
 	List<Word>load(String fileName);
-	boolean save(String fileName,List<Word>list);
-	
+	boolean save(String fileName,List<word.Word> list);
 	
 }

@@ -1,4 +1,4 @@
-package word;
+/*package word;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -529,8 +529,8 @@ public class WordProgram implements Program {
 		int menu = 0;
 		String fileName = "src/word/wordList.txt";
 		// 불러오기
-		List<Word> list= fileService.load(fileName);
-		vocabulary = new Vocabulary(list);
+		List<DAY10.word.Word> list= fileService.load(fileName);
+		vocabulary = new Vocabulary(wrongList);
 		
 		do {
 			try {
@@ -563,4 +563,4 @@ public class WordProgram implements Program {
 	
 	
 
-}
+}*/
