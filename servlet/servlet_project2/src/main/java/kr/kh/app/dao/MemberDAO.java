@@ -7,5 +7,7 @@ import kr.kh.app.model.vo.MemberVO;
 public interface MemberDAO {
 
 	boolean insertMember(@Param("member")MemberVO member);
+
+	MemberVO selectMember(@Param("id")String id);
  
 }

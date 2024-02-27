@@ -22,5 +22,14 @@ public class MemberVO {
 		this.me_ms_state = me_ms_state;
 		this.me_pw = me_pw;
 		this.me_email = me_email;
+	}
+
+
+	public MemberVO(String me_id, String me_pw,String me_ms_state) {
+		this.me_id = me_id;
+		this.me_pw = me_pw;
+		this.me_ms_state=me_ms_state;
 	}	
+	
+	
 }
