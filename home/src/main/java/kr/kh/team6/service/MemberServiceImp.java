@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import kr.kh.team6.dao.MemberDAO;
+import kr.kh.team6.model.dto.LoginDTO;
 import kr.kh.team6.model.vo.MemberVO;
 
 public class MemberServiceImp implements MemberService {
@@ -54,5 +55,23 @@ public class MemberServiceImp implements MemberService {
 		}
 	}
 
+
+	// 입력한 로그인 정보에 대한 회원을 가져오는 메서드 없으면 null...
+	@Override
+	public MemberVO login(LoginDTO loginDTO) {
+		if(loginDTO==null) {
+			return null; 
+		}
+		MemberVO user = memberDao.selectMember(loginDTO.getId());
+		if(user==null) {
+			return null;
+		}
+		if(user.getMe_pw().equals(loginDTO.getPw())) {
+			return user;
+		}
+		return null; 
+	}
+
+    
 	
 }

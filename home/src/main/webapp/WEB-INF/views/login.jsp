@@ -14,5 +14,6 @@
     <br>
     <button>로그인</button>
 </form>
+${user}
 </body>
 </html>
