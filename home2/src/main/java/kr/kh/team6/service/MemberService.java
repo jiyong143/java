@@ -5,7 +5,7 @@ import kr.kh.team6.model.vo.MemberVO;
 
 public interface MemberService {
 
-	MemberVO login(LoginDTO loginDTO);
+	MemberVO getMember(LoginDTO loginDTO);
 
 	boolean signup(MemberVO memberVO);  
 

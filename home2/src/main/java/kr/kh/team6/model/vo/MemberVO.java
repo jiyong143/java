@@ -19,7 +19,7 @@ public class MemberVO {
 	
 	
 	public MemberVO(String me_id, String me_birth, String me_email, String me_phone, String me_pw, String me_address,
-			String me_name) {
+			String me_name, String me_ms_state) {
 		this.me_id = me_id;
 		this.me_birth = me_birth;
 		this.me_email = me_email;
@@ -27,6 +27,7 @@ public class MemberVO {
 		this.me_pw = me_pw;
 		this.me_address = me_address;
 		this.me_name = me_name;
+		this.me_ms_state=me_ms_state;
 	}
 
 

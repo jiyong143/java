@@ -33,15 +33,20 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw"); 
-		MemberVO user = memberService.login(new LoginDTO(id,pw));
+		MemberVO user = memberService.getMember(new LoginDTO(id,pw));
 		if(user!=null) {
+			request.setAttribute("msg", "로그인에 성공했습니다.");
+			request.setAttribute("url","");
 			// 세션에 로그인한 회원의 정보를 저장해서 유지시킨다
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
-			
+		}else {
+			// 실패하면 다시 로그인 페이지로 이동
+			request.setAttribute("msg","로그인에 실패했습니다.");
+			request.setAttribute("url","login");	
 		}
+		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 		
-		doGet(request, response);
 	}
 
 }

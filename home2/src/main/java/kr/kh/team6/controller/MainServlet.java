@@ -19,10 +19,7 @@ public class MainServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String data = request.getParameter("data");
-		System.out.println(data);
-		String id = request.getParameter("id");
-		System.out.println(id);
+		
 		request.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(request, response);
 	}
 

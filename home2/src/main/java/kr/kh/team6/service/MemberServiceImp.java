@@ -33,7 +33,7 @@ public class MemberServiceImp implements MemberService {
 
 	// 아이디, 비밀번호 객체에 대응하는 회원을 가져오는 메서드 
 	@Override
-	public MemberVO login(LoginDTO loginDTO) {
+	public MemberVO getMember(LoginDTO loginDTO) {
 		if(loginDTO==null||
 		   loginDTO.getId()==null||
 		   loginDTO.getPw()==null) {
@@ -41,16 +41,16 @@ public class MemberServiceImp implements MemberService {
 		}
 		MemberVO member = memberDao.selectMember(loginDTO.getId());
 		if(member==null) {
-			return null;
+			return null; 
 		}
+		// 비번은 회원가입시 암호화 관리돼 db에서 직접 비교할 수 없기에 서버쪽에서 한다
 		if(member.getMe_pw().equals(loginDTO.getPw())) {
 			return member;
 		}
-		
 		return null;
-	}
+	} 
 
-	// 회원가입 시 입력한 정보로 이루어진 객체를 문제 유무 판단해서 알려주는 메서드 
+	// 회원가입 시 입력한 정보로 이루어진 객체를 문제 유무 판단해서 알려주는 메서드 ( 문제 없을 시 추가)
 	@Override
 	public boolean signup(MemberVO memberVO) {
 		if(memberVO==null||
@@ -63,9 +63,12 @@ public class MemberServiceImp implements MemberService {
 		   memberVO.getMe_address()==null) {
 		return false;
 	}
-		// 정규표현식 체크
 		
 		// 아이디, 이메일 닉네임 전화번호가 중복되면 안되게 하고싶다
+		
+		// 각 항목 유효성 검사
+		
+		// 아래 예외 처리는 아이디 중복 체크등을 검사 안해서 발생하는 예외를 임시 처리 하기 위한 방법 
 		try {
 		return memberDao.insertMember(memberVO); 
 		}catch(Exception e) {
