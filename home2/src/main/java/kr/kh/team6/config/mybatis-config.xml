@@ -16,5 +16,6 @@
   </environments>
   <mappers>
     <mapper resource="kr/kh/team6/dao/MemberMapper.xml"/>
+    <mapper resource="kr/kh/team6/dao/PostMapper.xml"/>
   </mappers>
 </configuration>

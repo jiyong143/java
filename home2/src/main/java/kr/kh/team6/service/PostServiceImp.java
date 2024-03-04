@@ -2,6 +2,7 @@ package kr.kh.team6.service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -30,11 +31,31 @@ public class PostServiceImp implements PostService{
 			e.printStackTrace();
 		}
 	}
-
+ 
 	@Override
-	public List<PostVO> getPost(int bo_num) {
-		return postDao.selectPost(bo_num);
+	public ArrayList <PostVO> getPostList(int bo_num) {
+		return postDao.selectPostList(bo_num);
 		
 	}
+
+	@Override
+	public boolean insertPost(PostVO post) {
+		if(post==null||
+		   !checkString(post.getPo_title())||
+		   !checkString(post.getPo_content())) { 
+			return false;   
+		} 
+		return postDao.insertPost(post);
+	}
+	
+	// 문자열이 null 또는 빈 문자열인지 확인해주는 메서드
+	public boolean checkString(String str) {
+		if(str==null||str.length()==0) {
+			return false;
+		}
+		return true;
+	}
+	
+	
 
 }
