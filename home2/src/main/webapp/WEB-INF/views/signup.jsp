@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
    <div class="container">
-    <form action="<c:url vlaue="/signup"/>" method="post">
+    <form action="<c:url value="/signup"/>" method="post">
     <h1>회원가입</h1>
         <div class="mb-3 mt-3">
 			<label for="id" class="form-label">아이디</label>
