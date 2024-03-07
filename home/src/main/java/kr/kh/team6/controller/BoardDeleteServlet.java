@@ -21,10 +21,10 @@ public class BoardDeleteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		
+		MemberVO user = (MemberVO) request.getSession().getAttribute("admin");
 
-		if (user == null || !"admin".equals(user.getMe_authority())) {
+		if (user == null ||!user.getMe_authority().equals("admin")) {
 			request.setAttribute("msg", "관리자 권한이 필요합니다. 관리자로 로그인 후 다시 시도하세요");
 			request.setAttribute("url", "/");
 			request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
@@ -44,7 +44,7 @@ public class BoardDeleteServlet extends HttpServlet {
 		}
 		else {
 			request.setAttribute("msg", "게시글을 삭제하지 못했습니다.");
-			request.setAttribute("url", "board/detail?num=" + num);
+			request.setAttribute("url", "board/list?num=" + num);
 		}
 		// message.jsp 화면을 전송
 		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
