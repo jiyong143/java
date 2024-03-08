@@ -50,16 +50,22 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title"><내 정보></h4>
-      <p class="card-text">아이디 : ${user.me_id}</p>
-      <p class="card-text">닉네임 : ${user.me_name}</p>
+      <p class="card-text">${user.me_name}</p>
+      <p class="card-text">${user.me_id}</p>
+      <p class="card-text">${user.me_email}</p>
+      <p class="card-text">${user.me_address}</p>
       <p class="card-text">
       <c:choose>
-		<c:when test='${user.me_authority eq "admin" }'>권한 : 관리자</c:when>
-		<c:otherwise>권한 : 회원 (${user.me_ms_state})</c:otherwise>
+		<c:when test='${user.me_authority eq "admin" }'>관리자</c:when>
+		<c:otherwise>회원(${user.me_ms_state})</c:otherwise>
 	  </c:choose>
       </p>
-      <a href="<c:url value="/member/update"/>" class="card-link">개인 정보 수정</a>
-      <a href="<c:url value="/logout"/>" class="card-link">로그아웃</a>
+      <a href="<c:url value="/member/update"/>" class="card-link">
+      <button type="button" class="btn btn-outline-dark">개인 정보 수정</button>
+      </a>
+      <a href="<c:url value="/logout"/>" class="card-link">
+      <button type="button" class="btn btn-outline-dark">로그아웃</button>
+      </a>
     </div>
   </div>
 </div>
