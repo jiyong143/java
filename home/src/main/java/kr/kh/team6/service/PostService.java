@@ -14,7 +14,7 @@ public interface PostService {
 	boolean insertPost(PostVO post);
 
 	int getTotalCount(Criteria cri, int bo_num);
-	
+
 	ArrayList<BoardVO> boardList();
 
 	PostVO getPost(int num);
@@ -24,5 +24,9 @@ public interface PostService {
 	void updateView(int num);
 
 	boolean deletePost(int num, MemberVO user);
+
+	ArrayList<BoardVO> getBoardList();
+
+	boolean updatePost(PostVO post, MemberVO user);
 
 }

@@ -33,18 +33,16 @@ public class CommentUpdateServlet extends HttpServlet {
 		
 		request.setAttribute("comment", comment);
 		// 댓글의 게시글 번호 가져옴
-		int bNum = comment.getCo_po_num();
+		int pNum = comment.getCo_po_num();
 	
-		request.setAttribute("bNum", bNum);
+		request.setAttribute("pNum", pNum);
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
-		
-		request.setAttribute("user", user);
 		
 		if(comment == null
 				|| !comment.getCo_me_id().equals(user.getMe_id())) {
 					//다르면 게시글 상세로 보내고, 작성자가 아닙니다라고 메세지를 띄움
 					request.setAttribute("msg", "댓글 작성자가 아닙니다.");
-					request.setAttribute("url", "post/detail?num="+bNum);
+					request.setAttribute("url", "post/detail?num="+pNum);
 					request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 					return; //return을 쓰면 else할 필요없이 바로 상세화면으로 이동
 				}
@@ -56,7 +54,7 @@ public class CommentUpdateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cNum = Integer.parseInt(request.getParameter("cNum"));
 		
-		int bNum = Integer.parseInt(request.getParameter("bNum"));
+		int pNum = Integer.parseInt(request.getParameter("pNum"));
 		String content = request.getParameter("content");
 		
 		if(commentService.updateComment(cNum,content)) {
@@ -64,7 +62,7 @@ public class CommentUpdateServlet extends HttpServlet {
 		}else {
 			request.setAttribute("msg", "댓글 수정을 실패했습니다.");
 		}
-		request.setAttribute("url", "post/detail?num="+bNum);			
+		request.setAttribute("url", "post/detail?num="+pNum);			
 		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 	}
 

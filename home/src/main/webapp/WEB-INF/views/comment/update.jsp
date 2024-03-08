@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +18,10 @@
 	<form action="<c:url value="/comment/update"/>" method="post">
 		<h1>댓글 수정</h1>
 		<input type="hidden" name="cNum" value="${cNum}">
-		<input type="hidden" name="bNum" value="${bNum}">
+		<input type="hidden" name="pNum" value="${pNum}">
 		<div class="mb-3 mt-3">
 		    <label for="writer" class="form-label">작성자 아이디:</label>
-		    <input type="text" class="form-control" id="writer" name="writer" value="${user.me_id}" readonly>
+		    <input type="text" class="form-control" id="writer" name="writer" value="${comment.co_me_id}" readonly>
 		</div>
 		<div class="mb-3 mt-3">
 		    <label for="content" class="form-label">내용:</label>

@@ -1,8 +1,6 @@
 package kr.kh.team6.model.vo;
 
 
-import java.util.Objects;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
