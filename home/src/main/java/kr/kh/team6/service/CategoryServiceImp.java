@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import kr.kh.team6.dao.CategoryDAO;
+import kr.kh.team6.model.vo.BoardVO;
 import kr.kh.team6.model.vo.CategoryVO;
 import kr.kh.team6.model.vo.MemberVO;
 
@@ -79,8 +80,22 @@ public class CategoryServiceImp implements CategoryService {
 	private boolean checkString(String str) {
 		if (str == null || str.length() == 0) {
 			return false;
-		}
+		} 
 		return true;
+	}
+
+	@Override
+	public CategoryVO getCategory(int cNum) {
+		
+		return categoryDAO.selectCategory(cNum); 
+	}
+
+	@Override
+	public ArrayList<BoardVO> getBoardInCategory(int ca_num) {
+		if(ca_num==0) {
+			return null;
+		}
+		return categoryDAO.selectBoardInCategory(ca_num); 
 	}
 
 }
