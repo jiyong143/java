@@ -20,6 +20,8 @@ public interface BoardDAO {
 	boolean deleteBoard(@Param("num")int num);
 
 	boolean updateBoard(@Param("board")BoardVO board);
+
+	String selectBoardName(@Param("po_bo_num")int po_bo_num);
 	
 
 	

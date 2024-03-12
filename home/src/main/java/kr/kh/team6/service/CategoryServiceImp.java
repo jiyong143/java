@@ -80,13 +80,12 @@ public class CategoryServiceImp implements CategoryService {
 	private boolean checkString(String str) {
 		if (str == null || str.length() == 0) {
 			return false;
-		} 
+		}
 		return true;
 	}
 
 	@Override
 	public CategoryVO getCategory(int cNum) {
-		
 		return categoryDAO.selectCategory(cNum); 
 	}
 
@@ -95,7 +94,7 @@ public class CategoryServiceImp implements CategoryService {
 		if(ca_num==0) {
 			return null;
 		}
-		return categoryDAO.selectBoardInCategory(ca_num); 
+		return categoryDAO.selectBoardInCategory(ca_num);
 	}
 
 }

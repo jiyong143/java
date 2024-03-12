@@ -29,4 +29,6 @@ public interface PostService {
 
 	boolean updatePost(PostVO post, MemberVO user);
 
+	ArrayList<PostVO> getPostsInSearch(String search);
+
 }
