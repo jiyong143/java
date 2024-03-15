@@ -40,6 +40,7 @@
 		ca_num = #{category.ca_num}
 		
 	</update>
+	
 	<select id="selectCategory" resultType="kr.kh.team6.model.vo.CategoryVO">
 	  select * from category where ca_num=#{cNum}
 	</select>
@@ -47,4 +48,5 @@
 	<select id="selectBoardInCategory" resultType="kr.kh.team6.model.vo.BoardVO">
 	  select * from board where bo_ca_num = #{ca_num}
 	</select>
+	
 </mapper>

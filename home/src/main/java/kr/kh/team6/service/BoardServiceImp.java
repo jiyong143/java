@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -72,16 +74,16 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public BoardVO getBoard(int num) {
-		return boardDao.selectBoard(num);
+	public BoardVO getBoard(int bo_num) {
+		return boardDao.selectBoard(bo_num);
 	}
 
 	@Override
-	public boolean updateBoard(BoardVO board, MemberVO user) {
-		if (user == null) {
+	public boolean updateBoard(BoardVO board, MemberVO admin) {
+		if (admin == null || board == null) {
 			return false;
 		}
-		if (board == null || !user.getMe_authority().equals("admin") || !checkString(board.getBo_title())) {
+		if (!admin.getMe_authority().equals("admin") || !checkString(board.getBo_title())) {
 			return false;
 		}
 		BoardVO dbBoard = boardDao.selectBoard(board.getBo_num());
@@ -91,4 +93,8 @@ public class BoardServiceImp implements BoardService {
 		// 같으면 게시글 수정
 		return boardDao.updateBoard(board);
 	}
+
+	
+	
+	
 }
