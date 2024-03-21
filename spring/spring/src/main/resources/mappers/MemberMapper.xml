@@ -3,14 +3,31 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.kh.spring.dao.MemberDAO">
-  <select id="selectMemberCount" resultType="int">
-  	select count(*) from member
-  </select>
-  <select id="selectMember" resultType="MemberVO">
-  	select * from member where me_id = #{id}
-  </select>
+
+<select id="selectMemberCount" resultType="int">
+    select count(*) from member
+</select>
+<select id="selectMemberById" resultType="MemberVO">
+  select * from member where  me_id=#{id}
+</select>
+  
   <insert id="insertMember">
-  	insert into member(me_id, me_pw, me_email, me_ms_state) 
-  	values(#{me_id}, #{me_pw}, #{me_email}, "이용중")
+		insert into member(me_id, me_pw, me_birth, me_name,
+		me_phone, me_email, me_address,me_ms_state,me_authority)
+		values(#{me_id}, #{me_pw},
+		#{me_birth}, #{me_name},
+		#{me_phone},#{me_email}, #{me_address},"이용중","user")
   </insert>
+  
+  <select id="selectMemberByName" resultType="MemberVO">
+      select * from member where me_name = #{name}
+  </select>
+  
+  <select id="selectMemberByEmail" resultType="MemberVO">
+     select * from member where me_email = #{email}
+  </select>
+  
+  <select id="selectMemberByPhone" resultType="MemberVO">
+    select * from member where me_phone=#{phone}
+  </select>
 </mapper>

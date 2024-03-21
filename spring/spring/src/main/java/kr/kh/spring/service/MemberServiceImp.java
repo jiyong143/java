@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.kh.spring.dao.MemberDAO;
-import kr.kh.spring.model.dto.LoginDTO;
 import kr.kh.spring.model.vo.MemberVO;
 
 @Service
@@ -12,42 +11,58 @@ public class MemberServiceImp implements MemberService {
 
 	@Autowired
 	private MemberDAO memberDao;
-
-	private boolean checkString(String str) {
-		return str != null && str.length() != 0; 
-	}
 	
+	private boolean checkString(String str) {
+		return str !=null&&str.length()!=0;
+	} 
+
+	@Override
+	public int testCountMember() {
+		
+		return memberDao.selectMemberCount();
+	}
+
+	@Override
+	public MemberVO getMember(String id) {
+		return memberDao.selectMemberById(id);  
+	}
+
+	MemberVO user;
 	@Override
 	public boolean insertMember(MemberVO member) {
-		if( member == null ||
-			!checkString(member.getMe_id()) ||
-			!checkString(member.getMe_pw()) ||
-			!checkString(member.getMe_email())) {
+		if(member==null||
+		   !checkString(member.getMe_id())||
+		   !checkString(member.getMe_pw())||
+		   !checkString(member.getMe_email())||
+		   !checkString(member.getMe_address())||
+		   !checkString(member.getMe_name())||
+		   !checkString(member.getMe_birth())||
+		   !checkString(member.getMe_phone())) {
 			return false;
 		}
-		//아이디 중복 체크
-		MemberVO user = memberDao.selectMember(member.getMe_id());
-		if(user != null) {
+		
+		// 아이디 중복 체크 
+		user = memberDao.selectMemberById(member.getMe_id());
+		if(user!=null) {
+			return false;
+		} 
+		// 닉네임 중복 체크 
+		user = memberDao.selectMemberByName(member.getMe_name());
+		if(user!=null) {
 			return false;
 		}
+		// 이메일 중복 체크 
+		user = memberDao.selectMemberByEmail(member.getMe_email());
+		if(user!=null) {
+			return false;
+		}
+		// 전화번호 중복 체크 
+		user = memberDao.selectMemberByPhone(member.getMe_phone());
+		if(user!=null) {
+			return false;
+		}
+		
 		return memberDao.insertMember(member);
+		   
 	}
-
-	@Override
-	public MemberVO login(LoginDTO loginDto) {
-		if( loginDto == null ||
-			!checkString(loginDto.getId()) || 
-			!checkString(loginDto.getPw())) {
-			return null;
-		}
-		//아이디와 일치하는 회원 정보 가져옴
-		MemberVO user = memberDao.selectMember(loginDto.getId());
-		//회원 정보가 없거나 비번이 다르면
-		if(user == null || !user.getMe_pw().equals(loginDto.getPw())) {
-			return null;
-		}
-		return user;
-	}
-	
-	
 }

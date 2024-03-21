@@ -8,11 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script type="text/javascript">
-<c:if test="${msg != null}">
-	alert('${msg}');
-</c:if>
-location.href = '<c:url value="${url}"/>'
-</script>
+   <script type="text/javascript">
+   <c:if test="${msg!=null}">
+     alert('${msg}');
+   </c:if>
+   location.href='<c:url value="${url}"/>'
+   </script>
 </body>
 </html>

@@ -8,8 +8,14 @@ public interface MemberDAO {
 
 	int selectMemberCount();
 
-	MemberVO selectMember(@Param("id")String id);
+	MemberVO selectMemberById(@Param("id")String id);
 
 	boolean insertMember(MemberVO member);
+
+	MemberVO selectMemberByName(@Param("name")String me_name);
+
+	MemberVO selectMemberByEmail(@Param("email")String me_email);
+
+	MemberVO selectMemberByPhone(@Param("phone")String me_phone); 
 
 }
