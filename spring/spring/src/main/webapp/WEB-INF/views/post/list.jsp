@@ -41,9 +41,11 @@
       <a class="page-link" href="javascript:void(0);">이전</a>
     </li>
  </c:if>
+ <c:forEach begin="${pm.startPage }" end="${pm.endPage }" var="i">
     <li class="page-item">
-      <a class="page-link" href="javascript:void(0);">1</a>
+      <a class="page-link" href="javascript:void(0);">${i}</a>
     </li>
+ </c:forEach>
   <c:if test="${pm.next}">
     <li class="page-item">
       <a class="page-link" href="javascript:void(0);">다음</a>
