@@ -16,6 +16,7 @@ public interface MemberDAO {
 
 	MemberVO selectMemberByEmail(@Param("email")String me_email);
 
-	MemberVO selectMemberByPhone(@Param("phone")String me_phone); 
+	MemberVO selectMemberByPhone(@Param("phone")String me_phone);
+
 
 }

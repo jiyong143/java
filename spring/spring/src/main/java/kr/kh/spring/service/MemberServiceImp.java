@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.kh.spring.dao.MemberDAO;
+import kr.kh.spring.model.dto.LoginDTO;
 import kr.kh.spring.model.vo.MemberVO;
 
 @Service
@@ -62,7 +63,24 @@ public class MemberServiceImp implements MemberService {
 			return false;
 		}
 		
-		return memberDao.insertMember(member);
+		return memberDao.insertMember(member); 
 		   
+	}
+
+	@Override
+	public MemberVO login(LoginDTO loginDto) {
+		if(loginDto==null||
+		   !checkString(loginDto.getId())||
+		   !checkString(loginDto.getPw())) {
+			return null;
+		}
+		MemberVO member = memberDao.selectMemberById(loginDto.getId());
+		if(member==null) {
+			return null;
+		}
+		if(!member.getMe_pw().equals(loginDto.getPw())) {
+			return null; 
+		}
+		return member; 
 	}
 }
