@@ -9,7 +9,6 @@
       <tr>
         <th>번호</th>
         <th>제목</th>
-        <th>내용</th>
         <th>작성자</th>
         <th>작성일</th>
         <th>조회수</th>
@@ -20,7 +19,6 @@
       <tr>
         <td>${post.po_num }</td>
         <td>${post.po_title }</td>
-        <td>${post.po_content }</td>
         <td>${post.po_me_id}(${post.po_me_name})</td>
         <td>${post.changeDate() }</td>
         <td>${post.po_views }</td>
@@ -28,8 +26,27 @@
      </c:forEach>
      <c:if test="${postList.size()==0 }">
        <tr>
-         <td colspan="6">게시글이 없습니다.</td>
+         <td colspan="5">게시글이 없습니다.</td>
        </tr>
      </c:if>
     </tbody>
   </table>
+  
+  <!--  페이지네이션 -->
+  
+ 
+  <ul class="pagination justify-content-center">
+ <c:if test="${pm.prev}">
+    <li class="page-item">
+      <a class="page-link" href="javascript:void(0);">이전</a>
+    </li>
+ </c:if>
+    <li class="page-item">
+      <a class="page-link" href="javascript:void(0);">1</a>
+    </li>
+  <c:if test="${pm.next}">
+    <li class="page-item">
+      <a class="page-link" href="javascript:void(0);">다음</a>
+    </li>
+  </c:if>
+  </ul>

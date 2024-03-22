@@ -22,4 +22,12 @@ public class PostServiceImp implements PostService {
 		}
 		return postDao.selectPostList(cri);
 	}
+
+	@Override
+	public int getPostTotalCount(Criteria cri) {
+		if(cri==null) {
+			cri = new Criteria(1,5);
+		}
+		return postDao.selectPostTotalCount(cri); 
+	}
 }

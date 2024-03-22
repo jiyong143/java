@@ -8,6 +8,8 @@ import kr.kh.spring.pagination.Criteria;
 public interface PostService {
 
 	ArrayList<PostVO> getPostList(Criteria cri);
+
+	int getPostTotalCount(Criteria cri);
 	
 	
 

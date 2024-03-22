@@ -10,7 +10,9 @@ import kr.kh.spring.pagination.Criteria;
 public interface PostDAO { 
 
 	
-  ArrayList<PostVO> selectPostList(@Param("cri")Criteria cri)
+  ArrayList<PostVO> selectPostList(@Param("cri")Criteria cri);
   
-  ;
+  
+  int selectPostTotalCount(@Param("cri")Criteria cri);
+  
 }

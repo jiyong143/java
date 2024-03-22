@@ -9,4 +9,8 @@
       order by po_num desc
       limit #{cri.pageStart},#{cri.perPageNum}
    </select>
+   
+   <select id="selectPostTotalCount" resultType="int">
+     select count(*) from post
+   </select>
 </mapper>
