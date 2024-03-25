@@ -8,6 +8,7 @@
     <thead>
       <tr>
         <th>번호</th>
+        <th>게시판</th>
         <th>제목</th>
         <th>작성자</th>
         <th>작성일</th>
@@ -18,6 +19,7 @@
      <c:forEach items="${postList}" var="post">
       <tr>
         <td>${post.po_num }</td>
+        <td>${post.po_bo_name }</td>
         <td>${post.po_title }</td>
         <td>${post.po_me_id}(${post.po_me_name})</td>
         <td>${post.changeDate() }</td>
@@ -37,18 +39,27 @@
  
   <ul class="pagination justify-content-center">
  <c:if test="${pm.prev}">
+ <c:url value="/post/list" var="url">
+    <c:param name="page" value="${pm.startpage -1 }"/>  
+ </c:url>
     <li class="page-item">
-      <a class="page-link" href="javascript:void(0);">이전</a>
+      <a class="page-link" href="${url }">이전</a>
     </li>
  </c:if>
  <c:forEach begin="${pm.startPage }" end="${pm.endPage }" var="i">
-    <li class="page-item">
-      <a class="page-link" href="javascript:void(0);">${i}</a>
+ <c:url value="/post/list" var="url">
+    <c:param name="page" value="${i}"/> 
+ </c:url>
+    <li class="page-item <c:if test="${pm.cri.page==i }">active</c:if>">
+       <a class="page-link" href="${url }">${i}</a>
     </li>
  </c:forEach>
   <c:if test="${pm.next}">
+  <c:url value="/post/list" var="url">
+    <c:param name="page" value="${pm.endPage + 1}"/> 
+ </c:url>
     <li class="page-item">
-      <a class="page-link" href="javascript:void(0);">다음</a>
+      <a class="page-link" href="${url }">다음</a>
     </li>
   </c:if>
   </ul>
