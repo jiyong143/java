@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jsx</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+	<div id="root"></div>
+<script type="text/babel">
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+		
+		/*배열에 0번지 값을 appleCount에 저장하고, 배열의 1번지값을 bananaCount에 저장하는 코드를 작성하고, 
+		   콘솔에 출력하세요. */
+			 let arr=[1,10];
+			 //let appleCount = arr[0];
+			 //let bananaCount= arr[1];
+			 // 배열에 각 번지에 있는 값을 한번에 각 변수에 저장하는 방법
+			 let [appleCount, bananCount] = arr;
+			 console.log(appleCount);
+			 console.log(bananaCount);
+			
+		function App(){
+			let [str, setStr]=React.usetState("");
+			function inputOnChange(event){
+				// input 태그에 입력된 값을 읽어와서 콘솔에 출력
+				let value=event.target.value;
+				setStr(value);
+			}
+			return (
+				<div>
+					<input type="text" onChange={inputOnChange}/>
+					<h1>{str}</h1>
+				</div>
+			)
+		}
+    root.render(
+			<App/>
+		);
+</script>
+</body>
+</html>
