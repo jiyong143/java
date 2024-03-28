@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JSX 복습</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+</head>
+<body>
+	<div id="root"></div>
+<script type="text/babel">
+		const root = ReactDOM.createRoot(document.getElementById("root"));
+		/*
+		입력창과 버튼을 추가하고, 입력창에 오늘의 할일 입력받아 버튼 클릭하면 
+		오늘의 할일이 추가되는 코드 작성
+		*/
+    function App(){	
+
+			let [toDo , setToDo] = React.useState("");
+			let [toDoList , setToDoList] = React.useState([]);
+
+			function insertToDo(){
+				setToDoList([...toDolist,toDo]);
+				setToDo("");
+			}
+			function removeToDo(index){
+				let tmpToDoList = [...toDolist];
+				tmpToDoList.splice(index,1);
+				setToDoList(tmpToDoList);
+			}
+			function list(item, index){
+				return <li>{item}<button onClick={()=>removeToDo(index)}>&times;</button></li>
+			}
+			function inputChange(e){
+          setToDo(e.target.value);
+			}
+			return (
+				<div>
+					<div>
+					  <input type="text" onChange={inputChange} value={toDo}/>
+						<button onClick={insertToDo}>할일 등록</button>
+				  </div>
+						<h1>오늘의 할일</h1>
+						<ul>
+							{toDoList.map(list)}
+						</ul>
+				</div>
+			);
+		};
+   root.render(<App/>)
+</script>
+</body>
+</html>
