@@ -57,7 +57,7 @@ public class MemberServiceImp implements MemberService {
 		return true;
 	}
 
-	@Override
+	@Override 
 	public MemberVO login(LoginDTO loginDto) { 
 		if(loginDto==null||
 		   !checkString(loginDto.getId())||

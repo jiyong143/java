@@ -56,7 +56,7 @@ public class HomeController {
 	@PostMapping("/login")
 	public String loginPost(Model model, LoginDTO loginDto) {
 		
-		MemberVO user = memberService.login(loginDto);
+		MemberVO user = memberService.login(loginDto); 
 	
 		if(user!=null) {
 			model.addAttribute("msg","로그인 성공");
