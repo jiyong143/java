@@ -63,3 +63,5 @@
     </li>
   </c:if>
   </ul>
+  
+ <a class="btn btn-outline-success" href="<c:url value="/post/insert"/>">게시글 작성</a>

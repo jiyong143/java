@@ -9,9 +9,8 @@ public class BoardVO {
 
 	private int bo_num;
 	private int bo_ca_num;
-	private String bo_me_id;
 	private String bo_title;
-	private String bo_content;
-	private int bo_view;
 	private CategoryVO category;
+	
+	
 }
