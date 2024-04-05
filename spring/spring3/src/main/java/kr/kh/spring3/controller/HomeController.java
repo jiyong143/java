@@ -1,4 +1,6 @@
 package kr.kh.spring3.controller;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.kh.spring3.model.dto.LoginDTO;
 import kr.kh.spring3.model.vo.MemberVO;
 import kr.kh.spring3.service.MemberService;
 import lombok.extern.log4j.Log4j;
@@ -50,13 +51,14 @@ public class HomeController {
 	@GetMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("title","로그인");
-		return "/member/login";
+		return "/member/login"; 
 	}
 	
-	@PostMapping("/login")
-	public String loginPost(Model model, LoginDTO loginDto) {
+	@PostMapping("/login") 
+	public String loginPost(Model model, MemberVO member) {
 		
-		MemberVO user = memberService.login(loginDto); 
+		MemberVO user = memberService.login(member);
+		model.addAttribute("user",user);
 	
 		if(user!=null) {
 			model.addAttribute("msg","로그인 성공");
@@ -67,6 +69,18 @@ public class HomeController {
 		}
 		
 		return "message";
+		
+	}
+	
+	@GetMapping("/logout")
+	public String logout(Model model, HttpSession session) {
+		
+		//MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		session.removeAttribute("user"); // user 변수의 회원 정보를 null로 만듬
+		model.addAttribute("msg", "로그아웃 했습니다.");
+		model.addAttribute("url", "/");
+		return "message"; 
 		
 	}
 	

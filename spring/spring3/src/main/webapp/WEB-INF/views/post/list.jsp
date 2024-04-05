@@ -28,6 +28,7 @@
 		<thead>
 			<tr>
 				<th>번호</th>
+				<th>게시판</th>
 				<th>제목</th>
 				<th>작성자</th>
 				<th>조회수</th>
@@ -37,6 +38,7 @@
 			<c:forEach items="${list}" var="post" varStatus="vs">
 				<tr>
 					<td>${pm.totalCount - vs.index - pm.cri.pageStart }</td>
+					<td>${post.bo_co_name }</td>
 					<td>
 						<a href="#">${post.bo_title}</a>
 					</td>
@@ -82,13 +84,12 @@
 			</li>
 		</c:if>
 	</ul>
+	<a href="<c:url value="/post/insert"/>" class="btn btn-outline-success">글 쓰기</a>
 </div>
-
-<a class="btn btn-outline-success" href="<c:url value="/post/insert"/>">글 쓰기</a>
 <script type="text/javascript">
-  $("[name=order]").change(function(){
-	  $("#searchForm").submit();
-  })
+$("[name=order]").change(function(){
+	$("#searchForm").submit();
+});
 </script>
 </body>
 </html>

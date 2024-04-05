@@ -58,19 +58,19 @@ public class MemberServiceImp implements MemberService {
 	}
 
 	@Override 
-	public MemberVO login(LoginDTO loginDto) { 
-		if(loginDto==null||
-		   !checkString(loginDto.getId())||
-		   !checkString(loginDto.getPw())) {
+	public MemberVO login(MemberVO member) { 
+		if(member==null||
+		   !checkString(member.getMe_id())||
+		   !checkString(member.getMe_pw())) {
 			return null;
 		}
-		MemberVO user = memberDao.selectMember(loginDto.getId());
+		MemberVO user = memberDao.selectMember(member.getMe_id());
 		
 		if(user==null) {
 			return null;
 		}
 		
-		if(user.getMe_pw().equals(loginDto.getPw())) {
+		if(passwordEncoder.matches(member.getMe_pw(), user.getMe_pw())) {
 			return user;
 		}
 		

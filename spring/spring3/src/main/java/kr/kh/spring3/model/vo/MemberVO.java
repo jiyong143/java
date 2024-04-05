@@ -1,7 +1,4 @@
 package kr.kh.spring3.model.vo;
-
-import java.util.Date;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

@@ -1,6 +1,5 @@
 package kr.kh.spring3.service;
 
-import kr.kh.spring3.model.dto.LoginDTO;
 import kr.kh.spring3.model.vo.MemberVO;
 
 public interface MemberService {
@@ -9,6 +8,6 @@ public interface MemberService {
 
 	boolean signup(MemberVO member);
 
-	MemberVO login(LoginDTO loginDto); 
+	MemberVO login(MemberVO member); 
 
 }

@@ -1,133 +1,133 @@
-import '/.App.css';
+import './App.css';
 import { useState } from 'react';
-import {BrowserRouter, Route, Link, Routes, useLocation, useNavigate} from 'react-router-dom'
+import {BrowserRouter, Route, Link, Routes, useLocation, useNavigate, Navigate} from 'react-router-dom'
 
 function App() {
-  /*음악을 조회하고 둥록하는 사이트를 구현하세요
-    음악 조회는 / 에서
-    음악 등록은 insert에서
-    음악 등록시 음악번호 (숫자), 제목, 가수, 장르를 입력하여 등록
-    음악 번호는 중복되지 않게 입력해서 추가
-    음악 조회에서 음악 삭제버튼을 클릭하면 삭제되도록 구현 : 음악 번호를 이용하여 삭제 */
-  let [list, setList] = useState([{
-    num : 1,
-    title : "보고싶다",
-    singer : "김범수",
-    genre : "발라드"
-  },{
-    num : 2,
-    title : "바람기억",
-    singer : "나얼",
-    genre : "발라드"
+   /*영화를 조회, 삭제하고 둥록하는 사이트를 구현
+    영화 조회는 / 에서
+    영화 등록은 /add에서
+    영화 등록시 영화번호 (숫자), 제목,  장르, 개봉일을 입력하여 등록
+    새 영화 등록 후에는 모든 입력 필드가 깨끗하게 비워준다
+    영화 번호는 중복되지 않게 입력해서 추가
+    영화 조회에서 영화 삭제버튼을 클릭하면 삭제되도록 구현 : 리스트에서 번지를 이용해서 삭제한다 */
+
+  let [list, setList] = useState([]);
+
+  function add(movie){
+    setList([movie, ...list]);
   }
-  ]);
-  function addMusic(music){
-    setList([music,...list]);
-  }
-  function deleteMusic(index){
+  function remove(index){
     let tmpList = [...list];
     tmpList.splice(index, 1);
     setList(tmpList);
   }
 
-  return(
-  <BrowserRouter>
-    <ul className="menu-list">
-      <li><Link to="/">메인</Link></li>
-      <li><Link to="/music/list">음악 리스트</Link></li>
-      <li><Link to="/music/insert">음악 등록</Link></li>
-    </ul>
-    <Routes>
-      <Route path="/" exact element={<Home/>} />
-      <Route path="/music/list" 
-        element={
-          <List list={list} 
-            remove={deleteMusic} 
-            add={addMusic}
-        />} 
-      />
-      <Route path="/music/insert" element={<Insert/>} />
-    </Routes>
-  </BrowserRouter>
+  return (
+    <BrowserRouter>
+      <Nav/>
+      <Routes>
+        <Route path="/" exact element={<List list={list} add={add} remove={remove}/>} />
+        <Route path="/add" element={<Add/>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-function Home(){
-  return (<h1>홈</h1>)
+function Nav(){
+  return (
+    <ul className="menu-list">
+      <li><Link to="/">List</Link></li>
+      <li><Link to="/add">Add New Movie</Link></li>
+    </ul>
+  );
 }
 function List({list, add, remove}){
-  //다른 페이지에서 전송한 정보를 받기 위해 location을 이용
+
   const location = useLocation();
-  //누군가가 전송을 하면 location.state에 전송한 정보들이 담겨 있다
-  let music = location.state;
-  if(music != null){
-    add(music);
-    //처리를 했으면 전송된 정보를 비움
+  let movie = location.state;
+  if(movie != null){
+    add(movie);
     location.state = null;
   }
   return (
-   <table>
-     <thead>
-       <tr>
-         <th>번호</th>
-         <th>제목</th>
-         <th>가수</th>
-         <th>장르</th>
-         <th>비고</th>
-       </tr>  
-     </thead>  
-     <tbody>
-       {
-         list.map((item, index)=>{
-           return(
-             <tr key={item.num}>
-               <td>{item.num}</td>
-               <td>{item.title}</td>
-               <td>{item.singer}</td>
-               <td>{item.genre}</td>
-               <td><button onClick={()=>remove(index)}>&times;</button></td>
-             </tr>  
-           );
-         })
-       }     
-     </tbody>
-   </table>
- );
+    <div>
+      <h1>Movies</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Release Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            list.map((item, index)=>{
+              return (
+                <tr>
+                  <td>{item.id}</td>
+                  <td>{item.title}</td>
+                  <td>{item.genre}</td>
+                  <td>{item.releaseDate}</td>
+                  <td><button onClick={()=>remove(index)}>Delete</button></td>
+                </tr>
+              )
+            })
+          }
+          
+        </tbody>
+      </table>
+    </div>
+  );
 }
-function Insert(){
-  let [num, setNum] = useState(0);
+function Add(){
+  let [id, setId] = useState("");
   let [title, setTitle] = useState("");
-  let [singer, setSinger] = useState("");
   let [genre, setGenre] = useState("");
+  let [releaseDate, setReleaseDate] = useState("");
 
-  //다른 페이지로 정보를 전송하기 위해서 navigate 사용
+  const idChange = (e) => setId(e.target.value);
+  const titleChange = (e) => setTitle(e.target.value);
+  const genreChange = (e) => setGenre(e.target.value);
+  const releaseDateChange = (e) => setReleaseDate(e.target.value);
+
+
   const navigate = useNavigate();
 
-  function insertMusic(){
-    //첫번째 매개변수 : 보낼 url
-    //state : 상태정보,
-    navigate("/music/list",{
+  function addMovie(){
+    navigate("/",{
       state : {
-        num,
+        id,
         title,
-        singer,
-        genre
+        genre,
+        releaseDate,
       }
     })
+    setId(""); 
+    setTitle("");
+    setGenre("");
+    setReleaseDate("");
   }
-  return (
-   <div>
-     <input type="number" placeholder="번호" onChange={(e)=>setNum(e.target.value)}/>
-     <br/>
-     <input type="text" placeholder="제목" onChange={(e)=>setTitle(e.target.value)}/>
-     <br/>
-     <input type="text" placeholder="가수" onChange={(e)=>setSinger(e.target.value)}/>
-     <br/>
-     <input type="text" placeholder="장르" onChange={(e)=>setGenre(e.target.value)}/>
-     <br/>
-     <button onClick={insertMusic}>음악 등록</button>
-   </div>
- );
-}
 
+  return (
+    <div>
+      <h1>Create Movie</h1>
+      <div>
+        <input type="number" placeholder="Input movie id" onChange={idChange} value={id}/>
+      </div>
+      <div>
+        <input type="text" placeholder="Input movie title" onChange={titleChange} value={title}/>
+      </div>
+      <div>
+        <input type="text" placeholder="Input movie genre" onChange={genreChange} value={genre}/>
+      </div>
+      <div>
+        <label for="releaseDate">출시일 : </label>
+        <input type="date" id="releaseDate" placeholder="연도-월-일" onChange={releaseDateChange} value={releaseDate}/>
+      </div>
+      <button onClick={addMovie}>Add Movie</button>
+    </div>
+  )
+}
 export default App;
